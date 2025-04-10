@@ -9,7 +9,7 @@ const Signup = () => {
       <TextField label="Email" type="email" variant="outlined" />
       <TextField label="Password" type="password" variant="outlined" />
       <Button variant="contained">Signup</Button>
-      <Link component={NextLink} href="/auth/signup" className="self-center">Login</Link>
+      <Link component={NextLink} href="/auth/login" className="self-center">Login</Link>
     </Stack>
     </div>
   )
