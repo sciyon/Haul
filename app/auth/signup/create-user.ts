@@ -3,24 +3,15 @@
 import { API_URL } from "@/app/constants/api";
 import { redirect } from "next/navigation";
 import { getErrorMessage } from "@/app/util/errors";
+import { post } from "@/app/util/fetch";
+import { FormError } from "../common/form-error.interface";
 
-export default async function createUser(
-  _prevState: any,
-  formData: FormData
-){
-  const res = await fetch(
-    `${API_URL}/users`,
-    {
-      method: "POST",
-      body: formData,
-    }
-  )
+export default async function createUser( _prevState: FormError, formData: FormData ){
+  const { error } = await post("users", formData)
 
-  const parsedRes = await res.json();
-
-  if(!res.ok){
-    return { error: getErrorMessage(parsedRes) };
+  if(error){
+    return { error }
   }
 
-  redirect("/")
+  redirect("/");
 }
