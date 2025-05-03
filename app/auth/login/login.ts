@@ -15,6 +15,7 @@ export default async function login( _prevState: FormError, formData: FormData )
       body: JSON.stringify(Object.fromEntries(formData)),
     }
   )
+  
   const parsedRes = await res.json();
   if(!res.ok){
     return { error: getErrorMessage(parsedRes) };
