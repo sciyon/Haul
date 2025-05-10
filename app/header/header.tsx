@@ -15,6 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { AuthContext } from '../auth/auth-context';
 import { useContext, useState, MouseEvent } from 'react';
 import { unauthenticatedRoutes, routes } from '../common/constants/routes';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   logout: () => Promise<void>;
@@ -22,6 +24,7 @@ interface HeaderProps {
 
 export default function Header({ logout }: HeaderProps) {
   const isAuthenticated = useContext(AuthContext);
+  const router = useRouter();
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -43,8 +46,8 @@ export default function Header({ logout }: HeaderProps) {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -86,7 +89,11 @@ export default function Header({ logout }: HeaderProps) {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.title} onClick={ ()=>{
+                  router.push(page.path)
+                  handleCloseNavMenu();
+                  }}
+                >
                   <Typography sx={{ textAlign: 'center' }}>{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -115,7 +122,10 @@ export default function Header({ logout }: HeaderProps) {
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={handleCloseNavMenu}
+                onClick={ ()=> {
+                  router.push(page.path);
+                  handleCloseNavMenu();
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.title}
