@@ -2,8 +2,8 @@
 
 import { Box, Button, TextField, Modal, Stack } from "@mui/material"
 import { useState } from "react"
-import createProduct from "./create-product"
-import { FormResponse } from "../common/form-response.interface"
+import createProduct from "../actions/create-product"
+import { FormResponse } from "../../common/form-response.interface"
 
 const styles= {
   position: "absolute",
