@@ -4,7 +4,7 @@ import { Product } from "./product"
 
 export default async function Products() {
   const products = await getProducts()
-  console.log(products)
+
   return (
     <Grid container spacing={3}>
       {products.map((product) => (

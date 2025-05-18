@@ -1,9 +1,11 @@
 "use client"
 
-import { Box, Button, TextField, Modal, Stack } from "@mui/material"
-import { useState } from "react"
+import { Box, Button, TextField, Modal, Stack, Typography } from "@mui/material"
+import { CSSProperties, useState } from "react"
 import createProduct from "../actions/create-product"
 import { FormResponse } from "../../common/form-response.interface"
+import { CloudUpload } from "@mui/icons-material"
+import { type } from '../../../../haul-be/generated/prisma/index';
 
 const styles= {
   position: "absolute",
@@ -16,6 +18,18 @@ const styles= {
   p: 4,
 }
 
+const fileInputStyles: CSSProperties = {
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  width: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+}
+
 interface CreateProductModalProps {
   open: boolean
   handleClose: () => void
@@ -25,10 +39,13 @@ export function CreateProductModal(
   { open, handleClose }: CreateProductModalProps
 ) {
   const [response, setResponse] = useState<FormResponse>();
+  const [fileName, setFileName] = useState("");
+
 
   const onClose = () => {
     setResponse(undefined);
     handleClose();
+    setFileName("");
   }
 
 
@@ -70,6 +87,22 @@ export function CreateProductModal(
               helperText={response?.error}
               error={!!response?.error}
             />
+            <Button 
+              component='label' 
+              variant="outlined" 
+              startIcon={<CloudUpload />}
+            >
+              Upload Image
+              <input
+                type="file"
+                name ="image"
+                style={fileInputStyles}
+                onChange={(e) => 
+                  e.target.files && setFileName(e.target.files[0].name)
+                }
+              ></input>
+            </Button>
+            <Typography>{fileName}</Typography>
             <Button type="submit" variant="contained">
               Submit
             </Button>
