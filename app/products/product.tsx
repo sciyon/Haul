@@ -16,7 +16,7 @@ export function Product({ product }: ProductProps) {
         <Typography variant="h4">{product.name}</Typography>
         { product.imageExists && (
           <Image 
-            src={`${API_URL}/products/${product.id}.jpg`}
+            src={`${API_URL}/images/products/${product.id}.jpg`}
             alt="Product Image"
             width='0'
             height='0'
