@@ -10,10 +10,13 @@ interface CheckoutProps{
 
 export default function Checkout({ productId }: CheckoutProps ){
   const handleCheckout = async () => {
-    const session = await checkout(productId)
+    const response = await checkout(productId);
+    if (response.error) {
+      console.error(response.error);
+      return;
+    }
     const stripe = await getStripe();
-    await stripe?.redirectToCheckout({ sessionId: session.data.id })
-
+    await stripe?.redirectToCheckout({ sessionId: response.data.id });
   }
 return (
     <Button 

@@ -9,7 +9,8 @@ interface SingleProductProps{
 }
 
 export default async function SingleProduct({ params }: SingleProductProps){
-  const product = await getProduct(+params.productId)
+  const productId = Number(params.productId)
+  const product = await getProduct(productId)
   return (
     <Grid container marginBottom={"2rem"} rowGap={3}>
       { product.imageExists && (
