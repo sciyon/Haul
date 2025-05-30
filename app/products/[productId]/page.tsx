@@ -11,9 +11,8 @@ interface PageProps {
 
 export default async function SingleProduct({
   params,
-  searchParams,
 }: PageProps) {
-  const [resolvedParams, resolvedSearchParams] = await Promise.all([params, searchParams])
+  const resolvedParams = await params
   const productId = Number(resolvedParams.productId)
   const product = await getProduct(productId)
   return (
