@@ -4,15 +4,16 @@ import Image from "next/image"
 import { getProductImage } from "../product-image"
 import Checkout from "@/app/checkout/checkout"
 
-type Props = {
-  params: { productId: string }
+interface PageProps {
+  params: Promise<{ productId: string }>
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export default async function SingleProduct({
   params,
-}: Props) {
-  const productId = Number(params.productId)
+}: PageProps) {
+  const resolvedParams = await params
+  const productId = Number(resolvedParams.productId)
   const product = await getProduct(productId)
   return (
     <Grid container marginBottom={"2rem"} rowGap={3}>
