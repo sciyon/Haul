@@ -4,7 +4,7 @@ import Header from "./header/header";
 import Providers from "./providers";
 import {CssBaseline} from "@mui/material";
 import { Container } from "@mui/material";
-import authenticated from "./auth/authenticated";
+import authenticated from "./auth/actions/authenticated";
 import logout from "./auth/logout";
 
 
