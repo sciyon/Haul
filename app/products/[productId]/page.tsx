@@ -6,13 +6,14 @@ import Checkout from "@/app/checkout/checkout"
 
 interface PageProps {
   params: Promise<{ productId: string }>
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export default async function SingleProduct({
   params,
+  searchParams,
 }: PageProps) {
-  const resolvedParams = await params
+  const [resolvedParams, resolvedSearchParams] = await Promise.all([params, searchParams])
   const productId = Number(resolvedParams.productId)
   const product = await getProduct(productId)
   return (
