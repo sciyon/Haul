@@ -1,6 +1,5 @@
 import Grid from '@mui/material/Grid';
 import getProducts from "./actions/get-products"
-import { Product } from "./product"
 import ProductsGrid from './products-grid';
 import { Typography, Button } from '@mui/material';
 import Link from 'next/link';
@@ -12,7 +11,7 @@ export default async function Products() {
   if (!isAuthenticated) {
     return (
       <Grid container justifyContent="center" alignItems="center" sx={{ height: '85vh' }}>
-        <Grid item>
+        <Grid>
           <Typography variant="h5" gutterBottom>
             Please log in or sign up to view products
           </Typography>
