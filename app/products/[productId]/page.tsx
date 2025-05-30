@@ -4,8 +4,9 @@ import Image from "next/image"
 import { getProductImage } from "../product-image"
 import Checkout from "@/app/checkout/checkout"
 
-interface SingleProductProps{
+interface SingleProductProps {
   params: { productId: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export default async function SingleProduct({ params }: SingleProductProps){
