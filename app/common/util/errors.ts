@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getErrorMessage = (response: any) => {
   if(response.error){
     if(Array.isArray(response.message)){
