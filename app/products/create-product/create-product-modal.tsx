@@ -5,7 +5,6 @@ import { CSSProperties, useState } from "react"
 import createProduct from "../actions/create-product"
 import { FormResponse } from "../../common/form-response.interface"
 import { CloudUpload } from "@mui/icons-material"
-import { type } from '../../../../haul-be/generated/prisma/index';
 
 const styles= {
   position: "absolute",

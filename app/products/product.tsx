@@ -1,11 +1,10 @@
 "use client"
 
-import { CardActionArea, CardHeader, Stack } from "@mui/material"
+import { CardActionArea, Stack } from "@mui/material"
 import { Card } from "@mui/material"
 import { Typography } from "@mui/material"
 import { Product as IProduct } from "./interfaces/product.interface"
 import Image from "next/image"
-import { API_URL } from "../common/constants/api"
 import { getProductImage } from "./product-image"
 import { useRouter } from "next/navigation"
 
