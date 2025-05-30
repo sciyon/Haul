@@ -4,11 +4,14 @@ import Image from "next/image"
 import { getProductImage } from "../product-image"
 import Checkout from "@/app/checkout/checkout"
 
+type Props = {
+  params: { productId: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
 export default async function SingleProduct({
   params,
-}: {
-  params: { productId: string }
-}) {
+}: Props) {
   const productId = Number(params.productId)
   const product = await getProduct(productId)
   return (
